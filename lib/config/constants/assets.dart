@@ -16,8 +16,10 @@ abstract class _AssetsHolder {
 
 class _Icons extends _AssetsHolder {
   const _Icons() : super('assets/icons');
+  String get back => '$basePath/ic_back.png';
 }
 
 class _Images extends _AssetsHolder {
   const _Images() : super('assets/images');
+  String get fingerPrint => '$basePath/finger_print.png';
 }

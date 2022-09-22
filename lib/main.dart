@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const BuyPage(),
+      routes: {
+        BuyPage.id:(context) => const BuyPage(),
+      },
     );
   }
 }

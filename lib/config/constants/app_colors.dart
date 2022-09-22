@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 abstract class AppColors {
   const AppColors._();
 
+  static const Color bgColor = Color(0xFF19191C);
+  static const Color cardBgColor = Color(0xFF2A2A34);
+  static const Color textColor1 = Color(0xFF9D9898);
+
   static const Color accentLight = Color(0xFFDC2828);
   static const Color deletedItem = Color(0xFFFFE9E9);
   static const Color deletedItemBorder = Color(0xFFF1A9A9);
