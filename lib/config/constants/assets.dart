@@ -16,6 +16,7 @@ abstract class _AssetsHolder {
 
 class _Icons extends _AssetsHolder {
   const _Icons() : super('assets/icons');
+  
 }
 
 class _Images extends _AssetsHolder {
