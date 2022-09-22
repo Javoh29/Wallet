@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:wallet/config/constants/app_colors.dart';
+import 'package:wallet/config/constants/app_decorations.dart';
+import 'package:wallet/config/constants/app_text_styles.dart';
+import 'package:wallet/config/constants/assets.dart';
+
+import 'components/payment_method_card.dart';
 
 class SPage extends StatefulWidget {
   const SPage({super.key});
@@ -14,84 +20,56 @@ class _SPageState extends State<SPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff19191C),
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 62,
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 62,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 18, right: 18, bottom: 48),
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      Assets.icons.back,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Center(
+                    child: Text(
+                      'Buy \$VVS',
+                      style: AppTextStyles.b6DemiBold.copyWith(
+                        color: AppColors.baseLight.shade100,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Image.asset(
-                        'assets/icons/ic_back.png',
-                        color: Colors.white,
-                      ),
-                    ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 39),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Payment method',
+                  style: AppTextStyles.b3Medium.copyWith(
+                    color: AppColors.textColor1,
                   ),
-                  const Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Center(
-                      child: Text(
-                        'Buy \$VVS',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                ),
+                const PaymentMethodCard(),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 42),
-              child: Column(
-                children: [
-                  const Text(
-                    'Payment method',
-                    style: TextStyle(
-                        color: Color(0xff9D9898),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  ListTile(
-                    
-                    leading: Image.asset('assets/icons/ic_finger_print.png'),
-                    title: Text(
-                      '8600 **** **** 1234',
-                      style: TextStyle(
-                          color: Colors.white.withOpacity(.29),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 11.3),
-                    ),
-                    subtitle: const Text(
-                      '06/24',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 11.3,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    trailing: const Text(
-                      'change',
-                      style: TextStyle(
-                        color: Color(0xff9D9898),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 11.3,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        )
+          ),
+        ],
+      ),
     );
   }
 }

@@ -48,7 +48,7 @@ abstract class AppTextStyles {
       fontFamily: fontHelios,
       fontWeight: FontWeight.bold,
       fontStyle: FontStyle.normal,
-      fontSize: 12.5,
+      fontSize: 11.3,
       color: AppColors.metalColor.shade10);
 
   static TextStyle h7 = TextStyle(
