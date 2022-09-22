@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wallet/presentation/pages/buy/saidmirzo_buy.dart';
-import 'package:wallet/presentation/pages/main/main_page.dart';
+import 'package:flutter/services.dart';
+import 'package:wallet/presentation/pages/buy/buy_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +11,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark));
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SPage(),
+      home: const BuyPage(),
+      routes: {
+        BuyPage.id:(context) => const BuyPage(),
+      },
     );
   }
 }

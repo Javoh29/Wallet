@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import '../../../../config/constants/app_colors.dart';
 import '../../../../config/constants/app_decorations.dart';
@@ -14,32 +13,25 @@ class PaymentMethodCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 10),
-      padding: const EdgeInsets.only(
-        left: 11,
-        right: 22,
-      ),
-      height: 60,
+      padding: const EdgeInsets.only(left: 11, right: 22, top: 15, bottom: 14),
       decoration: AppDecorations.defDecor.copyWith(
         borderRadius: BorderRadius.circular(17),
         color: AppColors.cardBgColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             Assets.images.fingerPrint,
             height: 30,
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 '8600 **** **** 1234',
                 style: AppTextStyles.h6.copyWith(
-                  color:
-                      AppColors.baseLight.shade100.withOpacity(.29),
+                  color: AppColors.baseLight.shade100.withOpacity(.29),
                 ),
               ),
               const SizedBox(
