@@ -23,148 +23,146 @@ class _BuyPageState extends State<BuyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff19191C),
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        leadingWidth: 75,
-        // #back button
-        leading: IconButton(
-          onPressed: () {},
-          splashRadius: 28,
-          icon: Image.asset(
-            Assets.icons.back,
-            color: Colors.white,
-            width: 28,
-            height: 8,
-          ),
-        ),
-        // #center title
-        title: Text(
-          'Buy \$VVS',
-          style: AppTextStyles.b6DemiBold.copyWith(
-            color: AppColors.baseLight.shade100,
-          ),
-        ),
-      ),
-      body: Stack(
+      body: Column(
         children: [
-          // #body
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 39, right: 39, bottom: 35, top: 6),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Payment method',
-                      style: AppTextStyles.b3Medium.copyWith(
-                        color: AppColors.textColor1,
+          Expanded(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 18, right: 18, bottom: 48, top: 62),
+                  child: Stack(
+                    children: [
+                      Transform.translate(
+                        offset: const Offset(0, -10),
+                        child: IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: Image.asset(
+                            Assets.icons.back,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
-                    const PaymentMethodCard(),
-                  ],
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Buy \$VVS',
+                          style: AppTextStyles.b6DemiBold.copyWith(
+                            color: AppColors.baseLight.shade100,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              // #first textfield
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    txtCtrOne.text,
-                    style: AppTextStyles.h5.copyWith(
-                      fontSize: 64,
-                      color: txtCtrOne.text == '0' ? const Color(0xff727272) : Colors.white,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 39, right: 39, bottom: 35),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Payment method',
+                        style: AppTextStyles.b3Medium.copyWith(
+                          color: AppColors.textColor1,
+                        ),
+                      ),
+                      const PaymentMethodCard(),
+                    ],
                   ),
-                  const SizedBox(width: 5),
-                  Text(
-                    '\$vvs',
-                    style: AppTextStyles.h5.copyWith(
-                      fontSize: 32,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-              // #Second textfield
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 70),
-                child: Row(
+                ),
+                // #first textfield
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      txtCtrTwo.text,
-                      style: AppTextStyles.h2.copyWith(
-                        color: const Color(0xffBBBBBB),
+                      txtCtrOne.text,
+                      style: AppTextStyles.h5.copyWith(
+                        fontSize: 64,
+                        color: txtCtrOne.text == '0' ? const Color(0xff727272) : Colors.white,
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: 5),
                     Text(
-                      'USD',
-                      style: AppTextStyles.h2.copyWith(
-                        color: const Color(0xffBBBBBB),
+                      '\$vvs',
+                      style: AppTextStyles.h5.copyWith(
+                        fontSize: 32,
+                        color: Colors.white,
                       ),
                     ),
                   ],
                 ),
-              ),
-              // #keyboard
-              Expanded(
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: keyboardNumbers.length,
-                  padding: const EdgeInsets.symmetric(horizontal: 78),
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 29),
-                  itemBuilder: (BuildContext context, int index) {
-                    return TextButton(
-                      onPressed: () => addAmount(keyboardNumbers[index]),
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all(const CircleBorder()),
-                      ),
-                      child: Text(
-                        keyboardNumbers[index],
+                // #Second textfield
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 70),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        txtCtrTwo.text,
                         style: AppTextStyles.h2.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
+                          color: const Color(0xffBBBBBB),
                         ),
                       ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-          // #bottom slider button
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: 233,
-              height: 56,
-              margin: const EdgeInsets.only(bottom: 46, top: 87),
-              child: SliderButton(
-                action: () {
-                  Navigator.pushNamed(context, BuyPage.id);
-                },
-                label: Text(
-                  'Slide to buy',
-                  style: AppTextStyles.b4Regular,
-                ),
-                alignLabel: Alignment.center,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xff957AF7),
+                      const SizedBox(width: 10),
+                      Text(
+                        'USD',
+                        style: AppTextStyles.h2.copyWith(
+                          color: const Color(0xffBBBBBB),
+                        ),
+                      ),
+                    ],
                   ),
-                  padding: const EdgeInsets.all(20),
-                  child: Image.asset('assets/icons/slider.png'),
                 ),
-              ),
+                // #keyboard
+                Expanded(
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: keyboardNumbers.length,
+                    padding: const EdgeInsets.symmetric(horizontal: 78),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 29),
+                    itemBuilder: (BuildContext context, int index) {
+                      return TextButton(
+                        onPressed: () => addAmount(keyboardNumbers[index]),
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: Text(
+                          keyboardNumbers[index],
+                          style: AppTextStyles.h2.copyWith(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+          Container(
+            width: 233,
+            height: 56,
+            margin: const EdgeInsets.only(bottom: 46, top: 87),
+            child: SliderButton(
+              action: () {
+                Navigator.pushNamed(context, BuyPage.id);
+              },
+              label: Text(
+                'Slide to buy',
+                style: AppTextStyles.b4Regular,
+              ),
+              alignLabel: Alignment.center,
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(0xff957AF7),
+                ),
+                padding: const EdgeInsets.all(20),
+                child: Image.asset('assets/icons/slider.png'),
+              ),
+            ),
+          )],
       ),
     );
   }
@@ -195,4 +193,45 @@ class _BuyPageState extends State<BuyPage> {
     }
     setState(() {});
   }
+}
+
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      elevation: 0,
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+      leadingWidth: 75,
+      // #back button
+      leading: IconButton(
+        onPressed: () {},
+        splashRadius: 28,
+        icon: Image.asset(
+          Assets.icons.back,
+          color: Colors.white,
+          width: 28,
+          height: 8,
+        ),
+      ),
+      // #center title
+      title: Row(
+        children: [
+          Text(
+            'Buy \$VVS',
+            style: AppTextStyles.b6DemiBold.copyWith(
+              color: AppColors.baseLight.shade100,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(84);
 }
