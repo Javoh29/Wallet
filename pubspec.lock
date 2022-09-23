@@ -109,13 +109,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
-  shimmer:
-    dependency: transitive
-    description:
-      name: shimmer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   path_drawing:
     dependency: transitive
     description:
@@ -137,6 +130,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
+  shimmer:
+    dependency: transitive
+    description:
+      name: shimmer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -215,4 +215,3 @@ packages:
 sdks:
   dart: ">=2.18.0 <3.0.0"
   flutter: ">=2.11.0-0.1.pre"
-  flutter: ">=1.20.0"
