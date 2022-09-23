@@ -16,6 +16,7 @@ abstract class _AssetsHolder {
 
 class _Icons extends _AssetsHolder {
   const _Icons() : super('assets/icons');
+  String get back => '$basePath/ic_back.png';
 
   String get home => '$basePath/ic_home.svg';
 
@@ -24,14 +25,21 @@ class _Icons extends _AssetsHolder {
   String get chat => '$basePath/ic_chat.svg';
 
   String get shape => '$basePath/ic_shape.svg';
+
+  String get exchange => '$basePath/ic_exchange.svg';
 }
 
 class _Images extends _AssetsHolder {
   const _Images() : super('assets/images');
+  String get fingerPrint => '$basePath/finger_print.png';
 
   String get user => '$basePath/img_user.png';
 
   String get profileOne => '$basePath/profile_one.png';
 
   String get profileTwo => '$basePath/profile_two.png';
+
+  String get bgGrdient => '$basePath/bg_gradient.png';
+
+  String get bgDoubleCricle => '$basePath/bg_double_circle.png';
 }
