@@ -5,6 +5,7 @@ import 'package:wallet/config/constants/app_colors.dart';
 import 'package:wallet/config/constants/app_text_styles.dart';
 
 import '../../../config/constants/assets.dart';
+import '../wallet/wallet_page.dart';
 import 'components/transaction_history.dart';
 
 class HomePage extends StatefulWidget {
@@ -79,7 +80,11 @@ class _HomePageState extends State<HomePage> {
                   // #sort
                   InkWell(
                     onTap: () {},
-                    child: SvgPicture.asset(Assets.icons.shape),
+                    child: SvgPicture.asset(
+                      Assets.icons.shape,
+                      width: 17,
+                      height: 11,
+                    ),
                   ),
                 ],
               ),
@@ -128,7 +133,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        body: Container(),
+        body: const WalletPage(),
       ),
     );
   }

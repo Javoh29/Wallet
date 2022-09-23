@@ -6,6 +6,8 @@ import 'package:wallet/config/constants/app_text_styles.dart';
 import 'package:wallet/config/constants/assets.dart';
 import 'package:wallet/presentation/pages/wallet/components/balance_card.dart';
 
+import '../../../config/constants/local_data.dart';
+
 class WalletPage extends StatelessWidget {
   const WalletPage({super.key});
 
@@ -21,12 +23,13 @@ class WalletPage extends StatelessWidget {
       ),
       padding: const EdgeInsets.only(top: 64, right: 22, left: 22),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               columnText(),
-              button_gradient(),
+              buttonGradient(),
             ],
           ),
           const BalanceCard(),
@@ -36,6 +39,77 @@ class WalletPage extends StatelessWidget {
               fontSize: 14,
               color: AppColors.textColor2,
             ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 21),
+            height: 85,
+            alignment: Alignment.center,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 25),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 54,
+                        height: 54,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(17),
+                        margin: const EdgeInsets.only(bottom: 13),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xff623BFF),
+                        ),
+                        child: SvgPicture.asset(Assets.icons.send),
+                      ),
+                      Text(
+                        'Send',
+                        style: AppTextStyles.b4Regular.copyWith(fontSize: 14, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 0.5,
+                  margin: const EdgeInsets.only(right: 26, top: 13.5, bottom: 36.5),
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                    colors: [
+                      Color(0xff3E3E4F),
+                      Color(0xff464659),
+                      Color(0xff3E3E4F),
+                    ],
+                  )),
+                ),
+                ...List.generate(
+                    9, (index) => transactionItem(profileImages[index], index.isEven ? 'Mathey' : 'Bradly')),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget transactionItem(String avatarImage, String receiverName) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 25),
+      child: Column(
+        children: [
+          Container(
+            width: 54,
+            height: 54,
+            margin: const EdgeInsets.only(bottom: 13),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(image: AssetImage(avatarImage), fit: BoxFit.cover),
+            ),
+          ),
+          Text(
+            receiverName,
+            style: AppTextStyles.b4Regular.copyWith(fontSize: 14, color: Colors.white30),
           ),
         ],
       ),
@@ -90,7 +164,7 @@ class WalletPage extends StatelessWidget {
     );
   }
 
-  Container button_gradient() {
+  Container buttonGradient() {
     return Container(
       width: 132,
       decoration: AppDecorations.defDecor.copyWith(
