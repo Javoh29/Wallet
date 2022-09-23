@@ -8,6 +8,10 @@ abstract class AppColors {
   static const Color deletedItemBorder = Color(0xFFF1A9A9);
   static List<Color> borderGr = [const Color(0xff686868), const Color(0xff979797).withOpacity(0)];
   static Color bottomPanelBg = const Color(0xff3E3B37);
+  static Color dividerColor = const Color(0xff4A4A4A);
+  static Color defHistoryColor = const Color(0xff2A2A34);
+  static Color defHistoryBgColor = const Color(0xff0E0E13);
+  static Color labelColor = const Color(0xffC2C1C1);
 
   static PrimaryColor primaryLight = const PrimaryColor(
     0xFFDA4ECB,

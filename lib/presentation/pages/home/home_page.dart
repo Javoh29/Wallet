@@ -1,10 +1,135 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:wallet/config/constants/app_colors.dart';
+import 'package:wallet/config/constants/app_text_styles.dart';
 
-class HomePage extends StatelessWidget {
+import '../../../config/constants/assets.dart';
+import 'components/transaction_history.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late ScrollController scrollController = ScrollController();
+  late PanelController panelController = PanelController();
+  bool isOpened = false;
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Home page'),);
+    return Scaffold(
+      body: SlidingUpPanel(
+        controller: panelController,
+        minHeight: 310,
+        boxShadow: List.empty(),
+        maxHeight: MediaQuery.of(context).size.height * 0.95,
+        color: Colors.transparent,
+        onPanelOpened: () {
+          setState(() {
+            isOpened = true;
+          });
+        },
+        onPanelClosed: () {
+          setState(() {
+            isOpened = false;
+          });
+        },
+        panel: Column(
+          children: [
+            // #sliding panel divider
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: 40,
+                height: 4,
+                margin: const EdgeInsets.only(bottom: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(3),
+                  color: AppColors.dividerColor,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 28, right: 40, top: 30, bottom: 5),
+              decoration: BoxDecoration(
+                color: AppColors.defHistoryColor,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // #history label
+                  Text(
+                    'TRANSACTION HISTORY',
+                    style: AppTextStyles.h1.copyWith(fontSize: 14, color: AppColors.labelColor),
+                  ),
+                  // #sort
+                  InkWell(
+                    onTap: () {},
+                    child: SvgPicture.asset(Assets.icons.shape),
+                  ),
+                ],
+              ),
+            ),
+            // #history list
+            Expanded(
+              child: NotificationListener(
+                onNotification: (notification) {
+                  if (notification is ScrollEndNotification && scrollController.position.pixels == 0) {
+                    panelController.close();
+                    return true;
+                  } else {
+                    return false;
+                  }
+                },
+                child: ListView(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  controller: scrollController,
+                  physics: isOpened ? const ClampingScrollPhysics() : const NeverScrollableScrollPhysics(),
+                  children: [
+                    TransactionHistory(
+                      bgColor: AppColors.defHistoryColor,
+                      bgBehindColor: AppColors.defHistoryColor,
+                      clientName: 'Transfer',
+                      clientProfile: Assets.images.profileOne,
+                      transactionDate: '15 september',
+                      transactionAmount: '+ 3 ',
+                      transactionCurrency: '\$VVS',
+                    ),
+                    ...List.generate(
+                      20,
+                      (index) => TransactionHistory(
+                        bgBehindColor: index.isEven ? AppColors.defHistoryColor : AppColors.defHistoryBgColor,
+                        bgColor: index.isEven ? AppColors.defHistoryBgColor : AppColors.defHistoryColor,
+                        clientName: 'Invited',
+                        clientProfile: Assets.images.profileTwo,
+                        transactionDate: '4 march',
+                        transactionAmount: '+ 1 ',
+                        transactionCurrency: '\$VVS',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: Container(),
+      ),
+    );
   }
 }
