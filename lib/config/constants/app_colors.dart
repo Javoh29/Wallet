@@ -10,17 +10,23 @@ abstract class AppColors {
   static const Color accentLight = Color(0xFFDC2828);
   static const Color deletedItem = Color(0xFFFFE9E9);
   static const Color deletedItemBorder = Color(0xFFF1A9A9);
+  static List<Color> borderGr = [const Color(0xff686868), const Color(0xff979797).withOpacity(0)];
+  static Color bottomPanelBg = const Color(0xff3E3B37);
 
   static PrimaryColor primaryLight = const PrimaryColor(
-    0xFF16A249,
+    0xFFDA4ECB,
     <int, Color>{
-      100: Color(0xFF16A249),
-      50: Color(0xFFF2FDF5),
+      1: Color(0xFFDA4ECB),
+      2: Color(0xFF2C3AE8),
+      3: Color(0xFF467FC9),
+      4: Color(0xFF1A1A1A),
+      5: Color(0xFFFF0000),
+      6: Color(0xFF4B5CF5),
     },
   );
 
   static BaseColor baseLight = BaseColor(
-    0xFF16A249,
+    0xFFFFFFFF,
     <int, Color>{
       100: Colors.white,
       50: const Color(0xFFF4F4F4),
@@ -30,8 +36,6 @@ abstract class AppColors {
       60: Colors.white.withOpacity(.6),
     },
   );
-
-  static MetalColor metalColor = MetalColor();
 }
 
 class BaseColor extends ColorSwatch<int> {
@@ -53,32 +57,15 @@ class BaseColor extends ColorSwatch<int> {
 class PrimaryColor extends ColorSwatch<int> {
   const PrimaryColor(super.primary, super.swatch);
 
-  Color get shade100 => this[100]!;
+  Color get shade1 => this[1]!;
 
-  Color get shade50 => this[50]!;
-}
+  Color get shade2 => this[2]!;
 
-class MetalColor extends ColorSwatch<int> {
-  MetalColor()
-      : super(
-          0xff111827,
-          <int, Color>{
-            // 200: const Color(0xffE5E7EB),
-            100: const Color(0xff111827),
-            90: const Color(0xff111827),
-            70: const Color(0xff111827).withOpacity(.7),
-            50: const Color(0xff6B7280),
-            40: const Color(0xff9CA3B0),
-            30: const Color(0xffD1D5DB),
-            10: const Color(0xffF3F4F6),
-          },
-        );
+  Color get shade3 => this[3]!;
 
-  Color get shade100 => this[100]!;
-  Color get shade90 => this[90]!;
-  Color get shade70 => this[70]!;
-  Color get shade50 => this[50]!;
-  Color get shade40 => this[40]!;
-  Color get shade30 => this[30]!;
-  Color get shade10 => this[10]!;
+  Color get shade5 => this[5]!;
+
+  Color get scaffoldBg => this[4]!;
+
+  Color get line => this[6]!;
 }

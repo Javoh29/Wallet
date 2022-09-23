@@ -16,10 +16,16 @@ abstract class _AssetsHolder {
 
 class _Icons extends _AssetsHolder {
   const _Icons() : super('assets/icons');
-  String get back => '$basePath/ic_back.png';
+
+  String get home => '$basePath/ic_home.svg';
+
+  String get wallet => '$basePath/ic_wallet.svg';
+
+  String get chat => '$basePath/ic_chat.svg';
 }
 
 class _Images extends _AssetsHolder {
   const _Images() : super('assets/images');
-  String get fingerPrint => '$basePath/finger_print.png';
+
+  String get user => '$basePath/img_user.png';
 }
