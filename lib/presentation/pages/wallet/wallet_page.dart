@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wallet/config/constants/app_colors.dart';
 import 'package:wallet/config/constants/app_decorations.dart';
 import 'package:wallet/config/constants/app_text_styles.dart';
 import 'package:wallet/config/constants/assets.dart';
+import 'package:wallet/presentation/pages/buy/buy_page.dart';
 import 'package:wallet/presentation/pages/wallet/components/balance_card.dart';
 
 import '../../../config/constants/local_data.dart';
@@ -21,35 +24,44 @@ class WalletPage extends StatelessWidget {
         ),
         color: AppColors.bgColor2,
       ),
-      padding: const EdgeInsets.only(top: 64, right: 22, left: 22),
+      padding: const EdgeInsets.only(top: 64),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              columnText(),
-              buttonGradient(),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 22),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                columnText(),
+                buttonGradient(context),
+              ],
+            ),
           ),
           const BalanceCard(),
-          Text(
-            'Frequent Transactions',
-            style: AppTextStyles.h8.copyWith(
-              fontSize: 14,
-              color: AppColors.textColor2,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 22),
+            child: Text(
+              'Frequent Transactions',
+              style: AppTextStyles.h8.copyWith(
+                fontSize: 14,
+                color: AppColors.textColor2,
+                letterSpacing: .3,
+              ),
             ),
           ),
           Container(
             margin: const EdgeInsets.only(top: 21),
-            height: 85,
+            height: 84,
             alignment: Alignment.center,
             child: ListView(
               scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.only(left: 22),
               physics: const BouncingScrollPhysics(),
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 25),
+                  padding: const EdgeInsets.only(right: 24),
                   child: Column(
                     children: [
                       Container(
@@ -72,16 +84,20 @@ class WalletPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 0.5,
-                  margin: const EdgeInsets.only(right: 26, top: 13.5, bottom: 36.5),
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                    colors: [
-                      Color(0xff3E3E4F),
-                      Color(0xff464659),
-                      Color(0xff3E3E4F),
-                    ],
-                  )),
+                  width: 1,
+                  height: 45,
+                  margin: const EdgeInsets.only(right: 26, top: 10, bottom: 33.5),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        const Color(0xff3E3E4F).withOpacity(0),
+                        const Color(0xff464659),
+                        const Color(0xff3E3E4F).withOpacity(0),
+                      ],
+                    ),
+                  ),
                 ),
                 ...List.generate(
                     9, (index) => transactionItem(profileImages[index], index.isEven ? 'Mathey' : 'Bradly')),
@@ -95,7 +111,7 @@ class WalletPage extends StatelessWidget {
 
   Widget transactionItem(String avatarImage, String receiverName) {
     return Padding(
-      padding: const EdgeInsets.only(right: 25),
+      padding: const EdgeInsets.only(right: 24),
       child: Column(
         children: [
           Container(
@@ -123,11 +139,14 @@ class WalletPage extends StatelessWidget {
         RichText(
           text: TextSpan(
             text: 'Hello ',
-            style: AppTextStyles.h5.copyWith(fontSize: 24.48),
+            style: AppTextStyles.h5.copyWith(
+              fontSize: 24.48,
+              letterSpacing: .59,
+            ),
             children: [
               TextSpan(
                 text: 'Bradly',
-                style: AppTextStyles.h1.copyWith(fontSize: 24.48),
+                style: AppTextStyles.h1.copyWith(fontSize: 24.48, letterSpacing: .59),
               )
             ],
           ),
@@ -138,10 +157,7 @@ class WalletPage extends StatelessWidget {
         RichText(
           text: TextSpan(
             text: 'You earned',
-            style: AppTextStyles.b5Regular.copyWith(
-              fontSize: 9,
-              color: AppColors.textColor2,
-            ),
+            style: AppTextStyles.b5Regular.copyWith(fontSize: 9, color: AppColors.textColor2, letterSpacing: .2),
             children: [
               TextSpan(
                 text: ' \$892.20 ',
@@ -150,12 +166,8 @@ class WalletPage extends StatelessWidget {
                   color: AppColors.textColor2,
                 ),
               ),
-              TextSpan(
+              const TextSpan(
                 text: 'for this month',
-                style: AppTextStyles.h1.copyWith(
-                  fontSize: 9,
-                  color: AppColors.textColor2,
-                ),
               )
             ],
           ),
@@ -164,37 +176,44 @@ class WalletPage extends StatelessWidget {
     );
   }
 
-  Container buttonGradient() {
-    return Container(
-      width: 132,
-      decoration: AppDecorations.defDecor.copyWith(
-        gradient: const LinearGradient(
-          colors: AppColors.gradientColors,
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
+  Widget buttonGradient(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => BuyPage()));
+      },
+      child: Container(
+        height: 44,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: AppColors.gradientColors,
+            transform: GradientRotation(-pi / 36),
+          ),
+          borderRadius: BorderRadius.circular(30),
         ),
-        borderRadius: BorderRadius.circular(30),
-      ),
-      padding: const EdgeInsets.only(right: 21, left: 18, top: 15, bottom: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '\$VVs',
-            style: AppTextStyles.b5Regular.copyWith(
-              color: AppColors.baseLight.shade100,
-              fontSize: 14,
+        padding: const EdgeInsets.only(right: 21, left: 18, top: 15, bottom: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '\$VVS',
+              style: AppTextStyles.b5Regular.copyWith(
+                color: AppColors.baseLight.shade100,
+                fontSize: 14,
+              ),
             ),
-          ),
-          SvgPicture.asset(Assets.icons.exchange),
-          Text(
-            '\$',
-            style: AppTextStyles.b5Regular.copyWith(
-              color: AppColors.baseLight.shade100,
-              fontSize: 14,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: SvgPicture.asset(Assets.icons.exchange),
             ),
-          ),
-        ],
+            Text(
+              '\$',
+              style: AppTextStyles.b5Regular.copyWith(
+                color: AppColors.baseLight.shade100,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

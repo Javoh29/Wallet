@@ -119,7 +119,8 @@ class _BuyPageState extends State<BuyPage> {
                     physics: const BouncingScrollPhysics(),
                     itemCount: keyboardNumbers.length,
                     padding: const EdgeInsets.symmetric(horizontal: 78),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 29),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 29),
                     itemBuilder: (BuildContext context, int index) {
                       return TextButton(
                         onPressed: () => addAmount(keyboardNumbers[index]),
@@ -143,7 +144,7 @@ class _BuyPageState extends State<BuyPage> {
           Container(
             width: 233,
             height: 56,
-            margin: const EdgeInsets.only(bottom: 46, top: 87),
+            margin: const EdgeInsets.only(bottom: 46),
             child: SliderButton(
               action: () {
                 Navigator.pushNamed(context, BuyPage.id);
@@ -162,7 +163,8 @@ class _BuyPageState extends State<BuyPage> {
                 child: Image.asset('assets/icons/slider.png'),
               ),
             ),
-          )],
+          )
+        ],
       ),
     );
   }

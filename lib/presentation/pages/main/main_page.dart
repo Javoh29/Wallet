@@ -27,12 +27,20 @@ class MainPage extends StatelessWidget {
               right: 0,
               child: Transform.translate(
                 offset: const Offset(0, 73),
-                child: Container(
-                  height: 146,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                    gradient: LinearGradient(
-                        colors: [Colors.black, Colors.black.withOpacity(0)], transform: const GradientRotation(pi / 2)),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 17, sigmaY: 17),
+                    child: Container(
+                      height: 146,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                        gradient: LinearGradient(
+                            colors: [Colors.black, Colors.black.withOpacity(0)],
+                            transform: const GradientRotation(pi / 2)),
+                      ),
+                    ),
                   ),
                 ),
               )),
