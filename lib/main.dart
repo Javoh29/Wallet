@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wallet/presentation/pages/buy/saidmirzo_buy.dart';
+import 'package:wallet/config/theme/themes.dart';
 import 'package:wallet/presentation/pages/main/main_page.dart';
 
 void main() {
@@ -13,10 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const SPage(),
+      theme: Themes.lightTheme,
+      home: MainPage(),
     );
   }
 }

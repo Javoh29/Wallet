@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class BuyPage extends StatefulWidget {
   const BuyPage({super.key});
@@ -12,6 +10,8 @@ class BuyPage extends StatefulWidget {
 class _BuyPageState extends State<BuyPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold(
+      body: Center(child: Text('Buy page')),
+    );
   }
 }

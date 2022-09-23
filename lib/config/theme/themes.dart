@@ -9,16 +9,16 @@ abstract class Themes {
     return ThemeData(
       primarySwatch: Colors.green,
       brightness: Brightness.light,
-      scaffoldBackgroundColor: AppColors.baseLight.shade100,
+      scaffoldBackgroundColor: AppColors.primaryLight.scaffoldBg,
       colorScheme: ColorScheme.light(
-        secondary: AppColors.primaryLight.shade100,
+        secondary: AppColors.primaryLight.shade1,
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.baseLight.shade100,
         centerTitle: true,
-        titleTextStyle: AppTextStyles.b1Medium.copyWith(color: AppColors.metalColor.shade100),
+        titleTextStyle: AppTextStyles.b1Medium.copyWith(color: AppColors.baseLight.shade100),
         iconTheme: IconThemeData(
-          color: AppColors.metalColor.shade100,
+          color: AppColors.baseLight.shade100,
         ),
       ),
       dividerColor: Colors.transparent,
@@ -26,14 +26,14 @@ abstract class Themes {
         indicator: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: AppColors.primaryLight.shade100,
+              color: AppColors.primaryLight.shade1,
             ),
           ),
         ),
         labelPadding: const EdgeInsets.all(12.0),
-        labelColor: AppColors.primaryLight.shade100,
+        labelColor: AppColors.primaryLight.shade1,
         labelStyle: AppTextStyles.b3Medium,
-        unselectedLabelColor: AppColors.metalColor.shade50,
+        unselectedLabelColor: AppColors.baseLight.shade50,
         unselectedLabelStyle: AppTextStyles.b3Medium,
       ),
     );
