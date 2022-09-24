@@ -3,6 +3,7 @@ import '../../../../config/constants/app_colors.dart';
 import '../../../../config/constants/app_decorations.dart';
 import '../../../../config/constants/app_text_styles.dart';
 import '../../../../config/constants/assets.dart';
+import 'package:slide_to_confirm/slide_to_confirm.dart';
 
 class PaymentMethodCard extends StatelessWidget {
   const PaymentMethodCard({

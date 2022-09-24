@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet/config/theme/themes.dart';
+import 'package:wallet/presentation/pages/buy/buy_page.dart';
 import 'package:wallet/presentation/pages/main/main_page.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: Themes.lightTheme,
-      home: MainPage(),
+      home: const BuyPage(),
     );
   }
 }
