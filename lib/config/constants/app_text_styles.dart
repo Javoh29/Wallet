@@ -44,12 +44,12 @@ abstract class AppTextStyles {
       fontSize: 15.5,
       color: AppColors.baseLight.shade100);
 
-  static TextStyle h6 = TextStyle(
+  static TextStyle h6 =const  TextStyle(
       fontFamily: fontHelios,
       fontWeight: FontWeight.bold,
       fontStyle: FontStyle.normal,
-      fontSize: 12.5,
-      color: AppColors.baseLight.shade100);
+      fontSize: 11.3,
+      color: AppColors.textColor1);
 
   static TextStyle h7 = TextStyle(
       fontFamily: fontHelios,

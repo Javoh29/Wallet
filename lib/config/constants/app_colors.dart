@@ -3,11 +3,30 @@ import 'package:flutter/material.dart';
 abstract class AppColors {
   const AppColors._();
 
+  static const Color bgColor = Color(0xFF19191C);
+  static const Color bgColor2 = Color(0xFF1A1A1A);
+  static const Color cardBgColor = Color(0xFF2A2A34);
+  static const Color textColor1 = Color(0xFF9D9898);
+  static const Color textColor2 = Color(0xFFC1C1C1);
+  static Color textColor3 = const Color(0xFF161212).withOpacity(.6);
+  static const List<Color> gradientColors = [
+    Color(0xffDA4ECB),
+    Color(0xff2C3AE8),
+    Color(0xff467FC9)
+  ];
+
   static const Color accentLight = Color(0xFFDC2828);
   static const Color deletedItem = Color(0xFFFFE9E9);
   static const Color deletedItemBorder = Color(0xFFF1A9A9);
-  static List<Color> borderGr = [const Color(0xff686868), const Color(0xff979797).withOpacity(0)];
+  static List<Color> borderGr = [
+    const Color(0xff686868),
+    const Color(0xff979797).withOpacity(0)
+  ];
   static Color bottomPanelBg = const Color(0xff3E3B37);
+  static Color dividerColor = const Color(0xff4A4A4A);
+  static Color defHistoryColor = const Color(0xff2A2A34);
+  static Color defHistoryBgColor = const Color(0xff0E0E13);
+  static Color labelColor = const Color(0xffC2C1C1);
 
   static PrimaryColor primaryLight = const PrimaryColor(
     0xFFDA4ECB,
