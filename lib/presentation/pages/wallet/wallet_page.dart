@@ -18,7 +18,7 @@ class WalletPage extends StatelessWidget {
       decoration: AppDecorations.defDecor.copyWith(
         image: DecorationImage(
           image: AssetImage(Assets.images.bgGrdient),
-          alignment: Alignment.topCenter,
+          alignment: Alignment.topRight,
         ),
         color: AppColors.bgColor2,
       ),

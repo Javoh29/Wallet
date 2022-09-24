@@ -29,6 +29,8 @@ class _Icons extends _AssetsHolder {
   String get exchange => '$basePath/ic_exchange.svg';
 
   String get send => '$basePath/ic_send.svg';
+
+  String get delete => '$basePath/ic_delete.png';
 }
 
 class _Images extends _AssetsHolder {

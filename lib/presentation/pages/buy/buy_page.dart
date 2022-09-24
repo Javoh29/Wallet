@@ -128,36 +128,77 @@ class _BuyPageState extends State<BuyPage> {
                     ],
                   ),
                 ),
-                // #keyboard
                 Expanded(
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: keyboardNumbers.length,
-                    padding: const EdgeInsets.symmetric(horizontal: 78),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3, crossAxisSpacing: 29),
-                    itemBuilder: (BuildContext context, int index) {
-                      return TextButton(
-                        onPressed: () => addAmount(keyboardNumbers[index]),
-                        style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all(const CircleBorder()),
-                        ),
-                        child: Text(
-                          keyboardNumbers[index],
-                          style: AppTextStyles.h2.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(4, (indexY) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: List.generate(
+                          3,
+                          (indexX) {
+                            return TextButton(
+                              onPressed: () => addAmount(
+                                  keyboardNumbers[indexY * 3 + indexX]),
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                    const CircleBorder()),
+                              ),
+                              child: indexY * 3 + indexX == 11
+                                  ? Image.asset(
+                                      Assets.icons.delete,
+                                      height: 20,
+                                      color: AppColors.baseLight,
+                                    )
+                                  : Text(
+                                      keyboardNumbers[indexY * 3 + indexX],
+                                      style: AppTextStyles.h2.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                            );
+                          },
                         ),
                       );
-                    },
+                    }),
                   ),
                 ),
+                // #keyboard
+                // Expanded(
+                //   child: GridView.builder(
+                //     shrinkWrap: true,
+                //     physics: const BouncingScrollPhysics(),
+                //     itemCount: keyboardNumbers.length,
+                //     padding: const EdgeInsets.symmetric(horizontal: 78),
+                //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //       // childAspectRatio:sizeDisplay> 1.6,
+                //       crossAxisCount: 3,
+                //       crossAxisSpacing: 33,
+                //     ),
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return TextButton(
+                //         onPressed: () => addAmount(keyboardNumbers[index]),
+                //         style: ButtonStyle(
+                //           shape:
+                //               MaterialStateProperty.all(const CircleBorder()),
+                //         ),
+                //         child: Text(
+                //           keyboardNumbers[index],
+                //           style: AppTextStyles.h2.copyWith(
+                //             fontWeight: FontWeight.w400,
+                //             color: Colors.white,
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // ),
               ],
             ),
+          ),
+          const SizedBox(
+            height: 50,
           ),
           Builder(
             builder: (context) {

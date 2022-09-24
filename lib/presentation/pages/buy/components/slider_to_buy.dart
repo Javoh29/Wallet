@@ -98,14 +98,14 @@ class SlideAction extends StatefulWidget {
 }
 
 List<Color> listGradient1 = [
-  Color(0xffDA4ECB),
-  Color(0xff2C3AE8),
-  Color(0xff467FC9),
+  const Color(0xffDA4ECB),
+  const Color(0xff2C3AE8),
+  const Color(0xff467FC9),
 ];
 List<Color> listGradient2 = [
-  Color(0xff5E4F5C),
-  Color(0xff505273),
-  Color(0xff424A54),
+  const Color(0xff5E4F5C),
+  const Color(0xff505273),
+  const Color(0xff424A54),
 ];
 bool complated = false;
 
@@ -117,7 +117,7 @@ class SlideActionState extends State<SlideAction>
   double _dx = 0;
   double _maxDx = 0;
   double get _progress => _dx == 0 ? 0 : _dx / _maxDx;
-  double _endDx = 0;
+   double _endDx = 0;
   double _dz = 1;
   double? _initialContainerWidth, _containerWidth;
   double _checkAnimationDx = 0;
