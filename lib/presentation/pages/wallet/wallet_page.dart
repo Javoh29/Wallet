@@ -7,6 +7,7 @@ import 'package:wallet/config/constants/app_decorations.dart';
 import 'package:wallet/config/constants/app_text_styles.dart';
 import 'package:wallet/config/constants/assets.dart';
 import 'package:wallet/presentation/pages/buy/buy_page.dart';
+import 'package:wallet/presentation/pages/buy/buy_page.dart';
 import 'package:wallet/presentation/pages/wallet/components/balance_card.dart';
 
 import '../../../config/constants/local_data.dart';
@@ -20,7 +21,7 @@ class WalletPage extends StatelessWidget {
       decoration: AppDecorations.defDecor.copyWith(
         image: DecorationImage(
           image: AssetImage(Assets.images.bgGrdient),
-          alignment: Alignment.topCenter,
+          alignment: Alignment.topRight,
         ),
         color: AppColors.bgColor2,
       ),
@@ -78,7 +79,8 @@ class WalletPage extends StatelessWidget {
                       ),
                       Text(
                         'Send',
-                        style: AppTextStyles.b4Regular.copyWith(fontSize: 14, color: Colors.white),
+                        style: AppTextStyles.b4Regular
+                            .copyWith(fontSize: 14, color: Colors.white),
                       ),
                     ],
                   ),
@@ -100,7 +102,9 @@ class WalletPage extends StatelessWidget {
                   ),
                 ),
                 ...List.generate(
-                    9, (index) => transactionItem(profileImages[index], index.isEven ? 'Mathey' : 'Bradly')),
+                    9,
+                    (index) => transactionItem(profileImages[index],
+                        index.isEven ? 'Mathey' : 'Bradly')),
               ],
             ),
           ),
@@ -120,12 +124,14 @@ class WalletPage extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 13),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              image: DecorationImage(image: AssetImage(avatarImage), fit: BoxFit.cover),
+              image: DecorationImage(
+                  image: AssetImage(avatarImage), fit: BoxFit.cover),
             ),
           ),
           Text(
             receiverName,
-            style: AppTextStyles.b4Regular.copyWith(fontSize: 14, color: Colors.white30),
+            style: AppTextStyles.b4Regular
+                .copyWith(fontSize: 14, color: Colors.white30),
           ),
         ],
       ),

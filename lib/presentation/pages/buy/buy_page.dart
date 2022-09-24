@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:slider_button/slider_button.dart';
 import 'package:wallet/config/constants/app_text_styles.dart';
-
+import 'package:wallet/presentation/pages/buy/components/slider_to_buy.dart';
 import '../../../config/constants/app_colors.dart';
 import '../../../config/constants/assets.dart';
 import 'components/payment_method_card.dart';
@@ -15,7 +14,20 @@ class BuyPage extends StatefulWidget {
 }
 
 class _BuyPageState extends State<BuyPage> {
-  List<String> keyboardNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '⌫'];
+  List<String> keyboardNumbers = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '.',
+    '0',
+    '⌫'
+  ];
   late TextEditingController txtCtrOne = TextEditingController(text: '0');
   late TextEditingController txtCtrTwo = TextEditingController(text: '0');
 
@@ -29,7 +41,8 @@ class _BuyPageState extends State<BuyPage> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 18, right: 18, bottom: 48, top: 62),
+                  padding: const EdgeInsets.only(
+                      left: 18, right: 18, bottom: 48, top: 62),
                   child: Stack(
                     children: [
                       Transform.translate(
@@ -55,7 +68,8 @@ class _BuyPageState extends State<BuyPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 39, right: 39, bottom: 35),
+                  padding:
+                      const EdgeInsets.only(left: 39, right: 39, bottom: 35),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -77,7 +91,9 @@ class _BuyPageState extends State<BuyPage> {
                       txtCtrOne.text,
                       style: AppTextStyles.h5.copyWith(
                         fontSize: 64,
-                        color: txtCtrOne.text == '0' ? const Color(0xff727272) : Colors.white,
+                        color: txtCtrOne.text == '0'
+                            ? const Color(0xff727272)
+                            : Colors.white,
                       ),
                     ),
                     const SizedBox(width: 5),
@@ -112,58 +128,102 @@ class _BuyPageState extends State<BuyPage> {
                     ],
                   ),
                 ),
-                // #keyboard
                 Expanded(
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: keyboardNumbers.length,
-                    padding: const EdgeInsets.symmetric(horizontal: 78),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 29),
-                    itemBuilder: (BuildContext context, int index) {
-                      return TextButton(
-                        onPressed: () => addAmount(keyboardNumbers[index]),
-                        style: ButtonStyle(
-                          shape: MaterialStateProperty.all(const CircleBorder()),
-                        ),
-                        child: Text(
-                          keyboardNumbers[index],
-                          style: AppTextStyles.h2.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(4, (indexY) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: List.generate(
+                          3,
+                          (indexX) {
+                            return TextButton(
+                              onPressed: () => addAmount(
+                                  keyboardNumbers[indexY * 3 + indexX]),
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                    const CircleBorder()),
+                              ),
+                              child: indexY * 3 + indexX == 11
+                                  ? Image.asset(
+                                      Assets.icons.delete,
+                                      height: 20,
+                                      color: AppColors.baseLight,
+                                    )
+                                  : Text(
+                                      keyboardNumbers[indexY * 3 + indexX],
+                                      style: AppTextStyles.h2.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                            );
+                          },
                         ),
                       );
-                    },
+                    }),
                   ),
                 ),
+                // #keyboard
+                // Expanded(
+                //   child: GridView.builder(
+                //     shrinkWrap: true,
+                //     physics: const BouncingScrollPhysics(),
+                //     itemCount: keyboardNumbers.length,
+                //     padding: const EdgeInsets.symmetric(horizontal: 78),
+                //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //       // childAspectRatio:sizeDisplay> 1.6,
+                //       crossAxisCount: 3,
+                //       crossAxisSpacing: 33,
+                //     ),
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return TextButton(
+                //         onPressed: () => addAmount(keyboardNumbers[index]),
+                //         style: ButtonStyle(
+                //           shape:
+                //               MaterialStateProperty.all(const CircleBorder()),
+                //         ),
+                //         child: Text(
+                //           keyboardNumbers[index],
+                //           style: AppTextStyles.h2.copyWith(
+                //             fontWeight: FontWeight.w400,
+                //             color: Colors.white,
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // ),
               ],
             ),
           ),
-          Container(
-            width: 233,
-            height: 56,
-            margin: const EdgeInsets.only(bottom: 46),
-            child: SliderButton(
-              action: () {
-                Navigator.pushNamed(context, BuyPage.id);
-              },
-              label: Text(
-                'Slide to buy',
-                style: AppTextStyles.b4Regular,
-              ),
-              alignLabel: Alignment.center,
-              child: Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xff957AF7),
-                ),
+          const SizedBox(
+            height: 50,
+          ),
+          Builder(
+            builder: (context) {
+              final GlobalKey<SlideActionState> _key = GlobalKey();
+              return Padding(
                 padding: const EdgeInsets.all(20),
-                child: Image.asset('assets/icons/slider.png'),
-              ),
-            ),
-          )
+                child: SlideAction(
+                  text: Text(
+                    'slide to buy',
+                    style: AppTextStyles.b4Regular,
+                  ),
+                  height: 56,
+                  width: 233,
+                  key: _key,
+                  onSubmit: () {
+                    Future.delayed(
+                      const Duration(seconds: 1),
+                      () => _key.currentState!.reset(),
+                    );
+                    // complated = false;
+                  },
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
@@ -173,8 +233,10 @@ class _BuyPageState extends State<BuyPage> {
     if (amount == '⌫') {
       if (txtCtrOne.text != "0") {
         if (txtCtrOne.text.length != 1) {
-          txtCtrOne.text = txtCtrOne.text.substring(0, txtCtrOne.text.length - 1);
-          txtCtrTwo.text = txtCtrTwo.text.substring(0, txtCtrTwo.text.length - 1);
+          txtCtrOne.text =
+              txtCtrOne.text.substring(0, txtCtrOne.text.length - 1);
+          txtCtrTwo.text =
+              txtCtrTwo.text.substring(0, txtCtrTwo.text.length - 1);
         } else {
           txtCtrOne.text = "0";
           txtCtrTwo.text = "0";
