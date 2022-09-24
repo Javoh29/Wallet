@@ -1,9 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import '../../../../config/constants/app_colors.dart';
-import '../../../../config/constants/app_decorations.dart';
 import '../../../../config/constants/app_text_styles.dart';
 import '../../../../config/constants/assets.dart';
-
 
 class BalanceCard extends StatelessWidget {
   const BalanceCard({
@@ -13,13 +13,11 @@ class BalanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(
-        top: 26,
-      ),
-      margin: const EdgeInsets.only(top: 31, bottom: 42),
+      padding: const EdgeInsets.only(top: 26),
+      margin: const EdgeInsets.only(top: 31, bottom: 42, right: 22, left: 22),
       height: 200,
       width: double.infinity,
-      decoration: AppDecorations.defDecor.copyWith(
+      decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
             Assets.images.bgDoubleCricle,
@@ -48,7 +46,6 @@ class BalanceCard extends StatelessWidget {
                         colors: [
                           AppColors.baseLight.shade20,
                           AppColors.baseLight.shade100,
-                          //add more color here.
                         ],
                       ).createShader(
                         const Rect.fromLTWH(0.0, 0.0, 200.0, 100.0),
@@ -70,19 +67,20 @@ class BalanceCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
             width: double.infinity,
-            decoration: AppDecorations.defDecor.copyWith(
-              borderRadius: const BorderRadius.only(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(12),
                 bottomRight: Radius.circular(12),
               ),
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 colors: [
-                  Color.fromRGBO(239, 207, 196, 100),
-                  Color.fromRGBO(157, 190, 222, 100),
+                  Color(0xffEFCFC4),
+                  Color(0xff9DBEDE),
                 ],
+                stops: [0.4, 1],
+                transform: GradientRotation(pi / 180 * 118),
               ),
             ),
             child: Column(

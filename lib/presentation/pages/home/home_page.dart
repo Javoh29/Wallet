@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   late ScrollController scrollController = ScrollController();
   late PanelController panelController = PanelController();
   bool isOpened = false;
+  double? mHeight;
 
   @override
   void dispose() {
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SlidingUpPanel(
         controller: panelController,
-        minHeight: 310,
+        minHeight: MediaQuery.of(context).size.height - 530,
         boxShadow: List.empty(),
         maxHeight: MediaQuery.of(context).size.height * 0.95,
         color: Colors.transparent,
@@ -61,7 +62,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(left: 28, right: 40, top: 30, bottom: 5),
+              padding: const EdgeInsets.only(left: 27.8, right: 37.68, top: 30, bottom: 5),
               decoration: BoxDecoration(
                 color: AppColors.defHistoryColor,
                 borderRadius: const BorderRadius.only(
@@ -81,9 +82,9 @@ class _HomePageState extends State<HomePage> {
                   InkWell(
                     onTap: () {},
                     child: SvgPicture.asset(
-                      Assets.icons.shape,
-                      width: 17,
-                      height: 11,
+                      Assets.icons.filter,
+                      width: 22.61,
+                      height: 22.61,
                     ),
                   ),
                 ],
@@ -120,8 +121,8 @@ class _HomePageState extends State<HomePage> {
                       (index) => TransactionHistory(
                         bgBehindColor: index.isEven ? AppColors.defHistoryColor : AppColors.defHistoryBgColor,
                         bgColor: index.isEven ? AppColors.defHistoryBgColor : AppColors.defHistoryColor,
-                        clientName: 'Invited',
-                        clientProfile: Assets.images.profileTwo,
+                        clientName: index.isEven ? 'Invited' : 'Transfer',
+                        clientProfile: index.isEven ? Assets.images.profileTwo : Assets.images.profileOne,
                         transactionDate: '4 march',
                         transactionAmount: '+ 1 ',
                         transactionCurrency: '\$VVS',

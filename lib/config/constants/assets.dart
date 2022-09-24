@@ -26,6 +26,8 @@ class _Icons extends _AssetsHolder {
 
   String get shape => '$basePath/ic_shape.svg';
 
+  String get filter => '$basePath/ic_filter.svg';
+
   String get exchange => '$basePath/ic_exchange.svg';
 
   String get send => '$basePath/ic_send.svg';
@@ -44,8 +46,12 @@ class _Images extends _AssetsHolder {
   String get profileTwo => '$basePath/profile_two.png';
 
   String get profileThree => '$basePath/profile_three.png';
+
   String get profileFour => '$basePath/profile_four.png';
+
   String get profileFive => '$basePath/profile_five.png';
+
+  String get profileSix => '$basePath/profile_six.png';
 
   String get bgGrdient => '$basePath/bg_gradient.png';
 
